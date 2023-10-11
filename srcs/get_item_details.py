@@ -43,11 +43,11 @@ def save_to_csv(data, filename):
 if __name__ == '__main__':
     logger.info('Starting...')
     
-    item_ids = load_item_ids('item_ids.txt')
+    item_ids = load_item_ids('../out/item_ids.txt')
     logger.info(f'{len(item_ids)} item_ids loaded')
 
     items = fetch_items(item_ids)
     logger.info(f'{len(items)} items details fetched')
 
-    save_to_csv(items, 'items.csv')
+    save_to_csv(items, '../out/items.csv')
     logger.info('Done.')

@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from typing import List
 import logging
+import os
 
 logger = logging.getLogger("yeet")
 logger.setLevel(logging.DEBUG)
@@ -70,7 +71,7 @@ def get_item_ids(starting_url: str) -> List[str]:
 
     return list(item_ids)
 
-def save_to_file(item_ids: List[str], filename: str = "item_ids.txt"):
+def save_to_file(item_ids: List[str], filename: str = "../out/item_ids.txt"):
     """
     Save item IDs to a specified file.
     
@@ -85,6 +86,10 @@ def save_to_file(item_ids: List[str], filename: str = "item_ids.txt"):
 
 if __name__ == '__main__':
     logger.info("Starting...")
+
+    if not os.path.exists('../out'):
+        os.makedirs('../out')
+
     url = 'https://4lapy.ru/catalog/sobaki/korm-sobaki/sukhoy-korm-sobaki/?section_id=166'
     item_ids = get_item_ids(url)
     save_to_file(item_ids)
